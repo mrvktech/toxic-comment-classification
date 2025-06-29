@@ -43,25 +43,25 @@ if st.button("Classify"):
             else:
                 st.markdown(f"<span style='color: green; font-weight: bold;'>{label.capitalize()}: ❌ NON-TOXIC</span>", unsafe_allow_html=True)
 
-        # If probabilities available
-        if hasattr(model, "predict_proba"):
-            st.subheader("Prediction Probabilities:")
+        # # If probabilities available
+        # if hasattr(model, "predict_proba"):
+        #     st.subheader("Prediction Probabilities:")
 
-            prob_list = model.predict_proba(X_vec)
+        #     prob_list = model.predict_proba(X_vec)
 
-            toxic_probs = []
-            non_toxic_probs = []
+        #     toxic_probs = []
+        #     non_toxic_probs = []
 
-            for prob in prob_list:
-                # prob shape: (1, 2) → [ [non-toxic, toxic] ]
-                non_toxic_probs.append(prob[0, 0])
-                toxic_probs.append(prob[0, 1])
+        #     for prob in prob_list:
+        #         # prob shape: (1, 2) → [ [non-toxic, toxic] ]
+        #         non_toxic_probs.append(prob[0, 0])
+        #         toxic_probs.append(prob[0, 1])
 
-            prob_df = pd.DataFrame({
-                "Label": LABELS,
-                "Non-toxic": non_toxic_probs,
-                "Toxic": toxic_probs
-            })
+        #     prob_df = pd.DataFrame({
+        #         "Label": LABELS,
+        #         "Non-toxic": non_toxic_probs,
+        #         "Toxic": toxic_probs
+        #     })
 
-            st.dataframe(prob_df.style.format("{:.4f}"))
-            st.bar_chart(prob_df.set_index("Label")["Toxic"])
+        #     st.dataframe(prob_df.style.format("{:.4f}"))
+        #     st.bar_chart(prob_df.set_index("Label")["Toxic"])
